@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "./";
+
+message User {
+    int32 id=1;
+    string name=2;
+    string address=3;
+    Profile profile = 4;
+}
+
+message Profile {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    int32  user_id=4;
+}
+
+service UserProfile {
+    rpc UpdateEmail(UpdateEmailRequest) returns (Response) {}
+    rpc CreateEmail(CreateEmailRequest) returns (Response) {}
+    rpc DeleteEmail(DeleteEmailRequest) returns (Response) {}
+}  
+
+message Response {
+    bool ok = 1;
+    string message=2;
+}
+
+message UpdateEmailRequest {
+    int32 id=1;
+    string Email =2;
+}
+
+message CreateEmailRequest {
+    string name = 2;
+    string email = 3;
+    int32  user_id=4;
+}
+
+message DeleteEmailRequest {
+    int32 id=1;
+}
